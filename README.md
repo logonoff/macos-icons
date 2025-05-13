@@ -42,4 +42,4 @@ run the following command:
 
 ## License
 
-The cursors are GPLv3. The icons are property of their respective owners.
+The cursors are GPLv3. The icons are property of their respective owners. `index.theme` is based off of [`pop-icon-theme`](https://github.com/pop-os/icon-theme) and is licensed under CC-BY-SA-4.0.
