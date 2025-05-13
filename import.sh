@@ -11,13 +11,14 @@ else
     exit 1
 fi
 
-SIZES="16x16 32x32 48x48 128x128 256x256 512x512"
+SIZES="16x16 32x32 48x48 128x128 256x256 512x512 1024x1024"
 FILENAME_WITHOUT_EXTENSION=$(basename "$2" .icns)
 
+icns2png -x "$2"
+
 for size in $SIZES; do
-    icns2png -x "$2" -s $size
     # too lazy to expand the glob so we assume depth of 32
-    mv "${FILENAME_WITHOUT_EXTENSION}_${size}x32.png" "${size}/apps/${1}.png"
+    mv "${FILENAME_WITHOUT_EXTENSION}_${size}x32.png" "${size}/apps/${FILENAME_WITHOUT_EXTENSION}.png"
 done
 
 
