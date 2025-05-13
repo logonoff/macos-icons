@@ -7,11 +7,17 @@ if [ "$1" = "--app" ]; then
     shift
     FILENAME_WITHOUT_EXTENSION=$(basename "$2" .icns)
 
-    icns2png -x "$2"
+    # detect if icns2png is installed
+    if ! command -v icns2png &> /dev/null; then
+        echo "icns2png could not be found, please install it first"
+        exit 1
+    fi
+
+    icns2png -x "$2" -o .
 
     for size in $SIZES; do
         # too lazy to expand the glob so we assume depth of 32
-        mv "${FILENAME_WITHOUT_EXTENSION}_${size}x32.png" "${size}/apps/${FILENAME_WITHOUT_EXTENSION}.png"
+        mv "${FILENAME_WITHOUT_EXTENSION}_${size}x32.png" "${size}/apps/$1.png"
     done
 
 
