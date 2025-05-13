@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Imports an `.icns` file into the xdg icon theme
 SIZES="16x16 32x32 48x48 128x128 256x256 512x512 1024x1024"
@@ -24,7 +24,9 @@ elif [ "$1" = "--alias" ]; then
     echo "$APP_NAME -> $ALIAS_NAME"
 
     for size in $SIZES; do
-        ln -s "${size}/apps/${APP_NAME}.png" "${size}/apps/${ALIAS_NAME}.png"
+        if [ -f "${size}/apps/${APP_NAME}.png" ]; then
+            ln -s "./${APP_NAME}.png" "./${size}/apps/${ALIAS_NAME}.png"
+        fi
     done
 
     echo "Created alias $ALIAS_NAME for $APP_NAME"
